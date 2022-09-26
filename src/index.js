@@ -1,5 +1,5 @@
 import './css/styles.css';
-import fetchCountries from './fetchCountries';
+import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
@@ -30,13 +30,10 @@ function onInputSearchCountry(e) {
         const findCountry = countries.filter(({ name: { official } }) =>
           official.toLowerCase().includes(valueNormalized)
         );
-        console.log(findCountry);
-        refs.listRef.innerHTML = '';
-        refs.infoRef.innerHTML = '';
 
         if (findCountry.length > 10) {
-          //  refs.listRef.innerHTML = '';
-          //  refs.infoRef.innerHTML = '';
+          refs.listRef.innerHTML = '';
+          refs.infoRef.innerHTML = '';
           Notiflix.Notify.info(
             'Too many matches found. Please enter a more specific name.'
           );
@@ -44,14 +41,14 @@ function onInputSearchCountry(e) {
         if (findCountry.length > 1 && findCountry.length <= 10) {
           const markupList = createCountriesList(findCountry);
           refs.listRef.innerHTML = markupList;
-          //  refs.infoRef.innerHTML = '';
+          refs.infoRef.innerHTML = '';
           return;
         }
 
         if (findCountry.length === 1) {
           const markupOneCountry = createCountryInformation(findCountry[0]);
           refs.infoRef.innerHTML = markupOneCountry;
-          //  refs.listRef.innerHTML = '';
+          refs.listRef.innerHTML = '';
           return;
         }
 

@@ -1,9 +1,10 @@
 import Notiflix from 'notiflix';
 
-export default function fetchCountries(name) {
+const BASE_URL = 'https://restcountries.com/v3.1';
+
+export function fetchCountries(name) {
   return fetch(
-    //  `https://restcountries.eu/rest/v2/all?fields=${name};capital;flag;population;languages`
-    `https://restcountries.com/v3.1/name/${name}?fields=name,capital,flags,population,languages,
+    `${BASE_URL}/name/${name}?fields=name,capital,flags,population,languages,
 	 `
   ).then(response => {
     if (!response.ok) {
